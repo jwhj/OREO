@@ -63,7 +63,7 @@ class ActorPPOTrainer(PPOTrainer):
         # For ZeRO-1/2:
         #   1. Broadcast parameters from rank 0 to all vllm engines
         # For ZeRO-3:
-        #   1. AllGather paramters to rank 0
+        #   1. AllGather parameters to rank 0
         #   2. Broadcast parameters from rank 0 to all vllm engines
         if self.vllm_engines is not None and torch.distributed.get_rank() == 0:
             master_address = ray._private.services.get_node_ip_address()
