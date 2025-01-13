@@ -96,6 +96,36 @@ python ../scratch/run_qwen.py --model [PATH_TO_YOUR_MODEL] --no_bos --save [SAVE
 ```
 Note the `--no_bos` option here.
 
+Here is a script that uses the OREO model to solve a specific math problem:
+```python
+from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
+
+model_path = "/mnt/data/ckpt/pcl/qwen_full_lr5e-6_beta0-03_rew01_actor-loss-dro_kl-reg-unbiased1e-2_plot-weights"
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+llm = LLM(model_path)
+params = SamplingParams(temperature=0, max_tokens=2048)
+
+message = [
+    {"role": "system", "content": "Please reason step by step, and put your final answer within \\boxed{}."},
+    {
+        "role": "user",
+        "content": "Janet\u2019s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?",
+    },
+]
+prompt = tokenizer.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
+
+result = llm.generate(prompt, params)
+print(result[0].outputs[0].text)
+```
+The output should be something like the following:
+```
+First find the total number of eggs Janet has each day: $16$ eggs/day
+Then subtract the number of eggs she eats for breakfast: $16-3=13$ eggs/day
+Then subtract the number of eggs she bakes for her friends: $13-4=9$ eggs/day
+Then multiply the number of eggs she sells by the price per egg to find her daily earnings: $9\cdot2=\boxed{18}$ dollars/day
+```
+
 ### ALFWorld
 
 This part requires [ALFWorld](https://github.com/alfworld/alfworld) to be installed.
