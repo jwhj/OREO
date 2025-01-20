@@ -101,7 +101,7 @@ Here is a script that uses the OREO model to solve a specific math problem:
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 
-model_path = "/mnt/data/ckpt/pcl/qwen_full_lr5e-6_beta0-03_rew01_actor-loss-dro_kl-reg-unbiased1e-2_plot-weights"
+model_path = "jwhj/Qwen2.5-Math-1.5B-OREO"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 llm = LLM(model_path)
 params = SamplingParams(temperature=0, max_tokens=2048)
