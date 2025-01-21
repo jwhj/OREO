@@ -144,10 +144,10 @@ You can use `--split eval_in_distribution` for seen environments.
 
 ## Reference
 ```bibtex
-@inproceedings{Wang2024OfflineRL,
+@article{wang2024offline,
   title={Offline Reinforcement Learning for LLM Multi-Step Reasoning},
-  author={Huaijie Wang and Shibo Hao and Hanze Dong and Shenao Zhang and Yilin Bao and Ziran Yang and Yi Wu},
-  year={2024},
-  url={https://api.semanticscholar.org/CorpusID:274965107}
+  author={Wang, Huaijie and Hao, Shibo and Dong, Hanze and Zhang, Shenao and Bao, Yilin and Yang, Ziran and Wu, Yi},
+  journal={arXiv preprint arXiv:2412.16145},
+  year={2024}
 }
 ```
